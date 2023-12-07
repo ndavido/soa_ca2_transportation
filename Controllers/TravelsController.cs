@@ -33,7 +33,7 @@ namespace soa_ca2.Controllers
 
         // GET: api/Travels/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Travel>> GetTravel(Guid id)
+        public async Task<ActionResult<Travel>> GetTravel(int id)
         {
           if (_context.Travel == null)
           {
@@ -52,7 +52,7 @@ namespace soa_ca2.Controllers
         // PUT: api/Travels/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTravel(Guid id, Travel travel)
+        public async Task<IActionResult> PutTravel(int id, Travel travel)
         {
             if (id != travel.TravelID)
             {
@@ -97,7 +97,7 @@ namespace soa_ca2.Controllers
 
         // DELETE: api/Travels/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTravel(Guid id)
+        public async Task<IActionResult> DeleteTravel(int id)
         {
             if (_context.Travel == null)
             {
@@ -115,7 +115,7 @@ namespace soa_ca2.Controllers
             return NoContent();
         }
 
-        private bool TravelExists(Guid id)
+        private bool TravelExists(int id)
         {
             return (_context.Travel?.Any(e => e.TravelID == id)).GetValueOrDefault();
         }

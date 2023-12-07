@@ -5,7 +5,7 @@ namespace soa_ca2.Models
     public class Travel
     {
         [Key]
-        public Guid TravelID { get; set; }
+        public int TravelID { get; set; }
 
         [Required]
         public string TravelName { get; set; }

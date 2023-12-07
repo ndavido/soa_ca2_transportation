@@ -6,10 +6,10 @@ namespace soa_ca2.Models
     public class Schedule
     {
         [Key]
-        public Guid ScheduleID { get; set; }
+        public int ScheduleID { get; set; }
 
         [Required]
-        public Guid TravelID { get; set; }
+        public int TravelID { get; set; }
 
         [ForeignKey("TravelID")]
         public Travel Travel { get; set; }

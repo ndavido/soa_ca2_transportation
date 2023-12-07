@@ -33,7 +33,7 @@ namespace soa_ca2.Controllers
 
         // GET: api/Schedules/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Schedule>> GetSchedule(Guid id)
+        public async Task<ActionResult<Schedule>> GetSchedule(int id)
         {
           if (_context.Schedule == null)
           {
@@ -52,7 +52,7 @@ namespace soa_ca2.Controllers
         // PUT: api/Schedules/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutSchedule(Guid id, Schedule schedule)
+        public async Task<IActionResult> PutSchedule(int id, Schedule schedule)
         {
             if (id != schedule.ScheduleID)
             {
@@ -97,7 +97,7 @@ namespace soa_ca2.Controllers
 
         // DELETE: api/Schedules/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteSchedule(Guid id)
+        public async Task<IActionResult> DeleteSchedule(int id)
         {
             if (_context.Schedule == null)
             {
@@ -115,7 +115,7 @@ namespace soa_ca2.Controllers
             return NoContent();
         }
 
-        private bool ScheduleExists(Guid id)
+        private bool ScheduleExists(int id)
         {
             return (_context.Schedule?.Any(e => e.ScheduleID == id)).GetValueOrDefault();
         }
