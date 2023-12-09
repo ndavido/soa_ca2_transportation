@@ -24,22 +24,24 @@ namespace soa_ca2.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Travel>>> GetTravel()
         {
-          if (_context.Travel == null)
-          {
-              return NotFound();
-          }
-            return await _context.Travel.ToListAsync();
+            if (_context.Travel == null)
+            {
+                return NotFound();
+            }
+            // Include the related Schedules data
+            return await _context.Travel.Include(t => t.Schedules).ToListAsync();
         }
 
         // GET: api/Travels/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Travel>> GetTravel(int id)
         {
-          if (_context.Travel == null)
-          {
-              return NotFound();
-          }
-            var travel = await _context.Travel.FindAsync(id);
+            if (_context.Travel == null)
+            {
+                return NotFound();
+            }
+            // Include the related Schedules data
+            var travel = await _context.Travel.Include(t => t.Schedules).FirstOrDefaultAsync(t => t.TravelID == id);
 
             if (travel == null)
             {
@@ -48,6 +50,7 @@ namespace soa_ca2.Controllers
 
             return travel;
         }
+
 
         // PUT: api/Travels/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754

@@ -1,11 +1,16 @@
 using Microsoft.EntityFrameworkCore;
 using soa_ca2.Models;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+});
+
 
 var ServerVersion = new MySqlServerVersion(new Version(8, 0, 29));
 var connectionString = "Server=localhost; Database=transportation_soa_ca2; User=root; Password=";

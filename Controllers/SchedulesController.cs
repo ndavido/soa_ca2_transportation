@@ -24,22 +24,24 @@ namespace soa_ca2.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Schedule>>> GetSchedule()
         {
-          if (_context.Schedule == null)
-          {
-              return NotFound();
-          }
-            return await _context.Schedule.ToListAsync();
+            if (_context.Schedule == null)
+            {
+                return NotFound();
+            }
+            // Include the related Travel data
+            return await _context.Schedule.Include(s => s.Travel).ToListAsync();
         }
 
         // GET: api/Schedules/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Schedule>> GetSchedule(int id)
         {
-          if (_context.Schedule == null)
-          {
-              return NotFound();
-          }
-            var schedule = await _context.Schedule.FindAsync(id);
+            if (_context.Schedule == null)
+            {
+                return NotFound();
+            }
+            // Include the related Travel data
+            var schedule = await _context.Schedule.Include(s => s.Travel).FirstOrDefaultAsync(s => s.ScheduleID == id);
 
             if (schedule == null)
             {
@@ -48,6 +50,7 @@ namespace soa_ca2.Controllers
 
             return schedule;
         }
+
 
         // PUT: api/Schedules/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
