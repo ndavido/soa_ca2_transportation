@@ -1,7 +1,7 @@
 # soa_ca2_transportation
 ```
 CREATE TABLE `Travel` (
-    `TravelID` CHAR(36) NOT NULL,
+    `TravelID` INT NOT NULL,
     `TravelName` VARCHAR(255) NOT NULL,
     `StartLocation` VARCHAR(255) NOT NULL,
     `EndLocation` VARCHAR(255) NOT NULL,
@@ -9,8 +9,8 @@ CREATE TABLE `Travel` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `Schedule` (
-    `ScheduleID` CHAR(36) NOT NULL,
-    `TravelID` CHAR(36) NOT NULL,
+    `ScheduleID` INT NOT NULL,
+    `TravelID` INT NOT NULL,
     `DepartureTime` DATETIME NOT NULL,
     `ArrivalTime` DATETIME NOT NULL,
     PRIMARY KEY (`ScheduleID`),
