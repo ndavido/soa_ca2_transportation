@@ -60,7 +60,7 @@ DROP TABLE IF EXISTS Schedule;
 DROP TABLE IF EXISTS Travel;
 
 CREATE TABLE Travel (
-    TravelID INT NOT NULL,
+    TravelID INT NOT NULL AUTO_INCREMENT,
     TravelName VARCHAR(255) NOT NULL,
     StartLocation VARCHAR(255) NOT NULL,
     EndLocation VARCHAR(255) NOT NULL,
@@ -68,7 +68,7 @@ CREATE TABLE Travel (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE Schedule (
-    ScheduleID INT NOT NULL,
+    ScheduleID INT NOT NULL AUTO_INCREMENT,
     TravelID INT NOT NULL,
     DepartureTime DATETIME NOT NULL,
     ArrivalTime DATETIME NOT NULL,
