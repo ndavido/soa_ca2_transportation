@@ -48,7 +48,7 @@ if (!app.Environment.IsDevelopment())
     });
 }
 
-//app.UseMiddleware<ApiKey>();
+app.UseMiddleware<ApiKey>();
 
 app.UseHttpsRedirection();
 
