@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using soa_ca2.Models;
+using soa_ca2.Models.DTOs;
 
 namespace soa_ca2.Controllers
 {
@@ -22,19 +23,29 @@ namespace soa_ca2.Controllers
 
         // GET: api/Schedules
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Schedule>>> GetSchedule()
+        public async Task<ActionResult<IEnumerable<ScheduleDTO>>> GetSchedule()
         {
             if (_context.Schedule == null)
             {
                 return NotFound();
             }
             // Include the related Travel data
-            return await _context.Schedule.Include(s => s.Travel).ToListAsync();
+            var schedules = await _context.Schedule.Include(s => s.Travel).ToListAsync();
+
+            var scheduleDTOs = schedules.Select(s => new ScheduleDTO
+            {
+                ScheduleID = s.ScheduleID,
+                TravelID = s.TravelID,
+                DepartureTime = s.DepartureTime,
+                ArrivalTime = s.ArrivalTime
+            }).ToList();
+
+            return scheduleDTOs;
         }
 
         // GET: api/Schedules/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Schedule>> GetSchedule(int id)
+        public async Task<ActionResult<ScheduleDTO>> GetSchedule(int id)
         {
             if (_context.Schedule == null)
             {
@@ -48,19 +59,35 @@ namespace soa_ca2.Controllers
                 return NotFound();
             }
 
-            return schedule;
+            var scheduleDTOs = new ScheduleDTO
+            {
+                ScheduleID = schedule.ScheduleID,
+                TravelID = schedule.TravelID,
+                DepartureTime = schedule.DepartureTime,
+                ArrivalTime = schedule.ArrivalTime
+            };
+
+            return scheduleDTOs;
         }
 
 
         // PUT: api/Schedules/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutSchedule(int id, Schedule schedule)
+        public async Task<IActionResult> PutSchedule(int id, ScheduleDTO scheduleDTO)
         {
-            if (id != schedule.ScheduleID)
+            if (id != scheduleDTO.ScheduleID)
             {
                 return BadRequest();
             }
+
+            var schedule = new Schedule
+            {
+                ScheduleID = scheduleDTO.ScheduleID,
+                TravelID = scheduleDTO.TravelID,
+                DepartureTime = scheduleDTO.DepartureTime,
+                ArrivalTime = scheduleDTO.ArrivalTime
+            };
 
             _context.Entry(schedule).State = EntityState.Modified;
 
@@ -86,16 +113,26 @@ namespace soa_ca2.Controllers
         // POST: api/Schedules
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Schedule>> PostSchedule(Schedule schedule)
+        public async Task<ActionResult<ScheduleDTO>> PostSchedule(ScheduleDTO scheduleDTO)
         {
-          if (_context.Schedule == null)
-          {
-              return Problem("Entity set 'TravelContext.Schedule'  is null.");
-          }
+            if (_context.Schedule == null)
+            {
+                return Problem("Entity set 'TravelContext.Schedule'  is null.");
+            }
+
+            var schedule = new Schedule
+            {
+                // Map properties from DTO to Schedule
+                TravelID = scheduleDTO.TravelID,
+                DepartureTime = scheduleDTO.DepartureTime,
+                ArrivalTime = scheduleDTO.ArrivalTime
+            };
+
             _context.Schedule.Add(schedule);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetSchedule", new { id = schedule.ScheduleID }, schedule);
+            return CreatedAtAction("GetSchedule", new { id = schedule.ScheduleID }, scheduleDTO);
+
         }
 
         // DELETE: api/Schedules/5
