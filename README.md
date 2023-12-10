@@ -9,7 +9,7 @@
 
 ### Educational Resources
 1. #### Api Key Authentication
-   The following links helped me understand how to create an Api Key and how to implement it into the Swagger Template.
+   I was able to better grasp how to generate an API key and include it into the Swagger Template with the aid of the following websites.
 
    >[Using API Key Authentication To Secure ASP.NET Core Web API; Gowtham K](https://www.c-sharpcorner.com/article/using-api-key-authentication-to-secure-asp-net-core-web-api/)
 
@@ -18,12 +18,12 @@
    >[ADDING AN API SECURITY DEFINITION AND REQUIREMENT USING SWAGGER UI; DENNIS ADOLFI](https://adolfi.dev/blog/adding-an-api-security-definition-and-requirement-using-swagger-ui/)
 
 2. #### Connection Resiliency
-   During the development process I had frequent issues with connectivity to my database. The following link helped me solve this issue.
+   My database's connection was often problematic for me throughout the development phase. This was resolved for me with the aid of the following website.
 
    >[Connection Resiliency; Microsoft](https://learn.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency)
 
 3. #### Azure mysql Database
-   To establish a live mysql database on azure, I used the following tutorials to guide me through the process.
+   I followed the instructions in the following tutorials to create a functioning MySQL database on Azure.
 
    >[Use MySQL Workbench with Azure Database for MySQL - Flexible Server; Microsoft](https://learn.microsoft.com/en-us/azure/mysql/flexible-server/connect-workbench)
 
@@ -31,19 +31,19 @@
 Cloud Knowledge](https://www.youtube.com/watch?v=4Q1J2T9MMns)
 
 4. #### Publishing Api
-   The following sources allowed me to have my .net web core api deployed on the azure server
+   My.net web core api was able to be implemented on the Azure server thanks to the following sources.
 
    >[Publish an ASP.NET Core web API to Azure API Management with Visual Studio; Microsoft](https://learn.microsoft.com/en-us/aspnet/core/tutorials/publish-to-azure-api-management-using-vs?view=aspnetcore-6.0)
 
    >[How to deploy asp.net core web api to azure app service; kudvenkat](https://www.youtube.com/watch?v=MP4zatl3jF8)
 
 5. #### Default Swagger Page
-   I used this forum to save time and not having to change the url in order to get to the Swagger template.
+   I saved time by using this forum instead of changing the URL to access the Swagger template.
 
    >[Default swagger index page not loading by default in Azure; Stackoverflow](https://stackoverflow.com/questions/67970993/default-swagger-index-page-not-loading-by-default-in-azure)
 
 6. #### Debugging Object Cycle
-   During the development process I came across an issue where my Api would not display null in Schedules for Travels and vice versa. This forum helped me solve this issue.
+   I discovered a problem throughout the development phase when my Api would show null in Schedules for Travels and vice versa. I had this problem solved thanks to this forum.
 
    >[.NET Core 3.0 possible object cycle was detected which is not supported; Stackoverflow](https://stackoverflow.com/questions/59199593/net-core-3-0-possible-object-cycle-was-detected-which-is-not-supported)
 
