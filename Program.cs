@@ -12,11 +12,14 @@ builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
 });
 
-
+//Mj6YSQJunpH3XmL
 var ServerVersion = new MySqlServerVersion(new Version(8, 0, 29));
-var connectionString = "Server=localhost; Database=transportation_soa_ca2; User=root; Password=";
+var connectionString = "Server=d00239107-soa-ca2.mysql.database.azure.com; Database=transportation_soa_ca2; User=d00239107; Password=Mj6YSQJunpH3XmL";
 
-builder.Services.AddDbContext<TravelContext>(opt => opt.UseMySql(connectionString, ServerVersion));
+builder.Services.AddDbContext<TravelContext>(opt =>
+    opt.UseMySql(connectionString, ServerVersion,
+        mySqlOptions => mySqlOptions.EnableRetryOnFailure()));
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
