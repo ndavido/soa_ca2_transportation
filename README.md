@@ -1,4 +1,47 @@
-# soa_ca2_transportation
+# Soa CA2 Transport API
+
+## Educational Resources
+### Api Key Authentication
+The following links helped me understand how to create an Api Key and how to implement it into the Swagger Template.
+
+[Using API Key Authentication To Secure ASP.NET Core Web API; Gowtham K](https://www.c-sharpcorner.com/article/using-api-key-authentication-to-secure-asp-net-core-web-api/)
+
+[SWAGGER UI FOR API KEY AUTHENTICATION FLOW WITH .NET CORE 6; gowthamk91](https://gowthamcbe.com/2022/02/21/swagger-ui-for-api-key-authentication-flow-with-net-core-6/)
+
+[ADDING AN API SECURITY DEFINITION AND REQUIREMENT USING SWAGGER UI; DENNIS ADOLFI](https://adolfi.dev/blog/adding-an-api-security-definition-and-requirement-using-swagger-ui/)
+
+### Connection Resiliency
+During the development process I had frequent issues with connectivity to my database. The following link helped me solve this issue.
+
+[Connection Resiliency; Microsoft](https://learn.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency)
+
+### Azure mysql Database
+To establish a live mysql database on azure, I used the following tutorials to guide me through the process.
+
+[Use MySQL Workbench with Azure Database for MySQL - Flexible Server; Microsoft](https://learn.microsoft.com/en-us/azure/mysql/flexible-server/connect-workbench)
+
+[Connect & Query Azure Database for MySQL Flexible Server using MySQL Workbench |Create Execute Table; 
+Cloud Knowledge](https://www.youtube.com/watch?v=4Q1J2T9MMns)
+
+### Publishing Api
+The following sources allowed me to have my .net web core api deployed on the azure server
+
+[Publish an ASP.NET Core web API to Azure API Management with Visual Studio; Microsoft](https://learn.microsoft.com/en-us/aspnet/core/tutorials/publish-to-azure-api-management-using-vs?view=aspnetcore-6.0)
+
+[How to deploy asp.net core web api to azure app service; kudvenkat](https://www.youtube.com/watch?v=MP4zatl3jF8)
+
+## Default Swagger Page
+I used this forum to save time and not having to change the url in order to get to the Swagger template.
+
+[Default swagger index page not loading by default in Azure; Stackoverflow](https://stackoverflow.com/questions/67970993/default-swagger-index-page-not-loading-by-default-in-azure)
+
+## Debugging Object Cycle
+During the development process I came across an issue where my Api would not display null in Schedules for Travels and vice versa. This forum helped me solve this issue.
+
+[.NET Core 3.0 possible object cycle was detected which is not supported; Stackoverflow](https://stackoverflow.com/questions/59199593/net-core-3-0-possible-object-cycle-was-detected-which-is-not-supported)
+
+## mysql Insertions
+### Database & Tables
 ```sql
 DROP DATABASE IF EXISTS transportation_soa_ca2;
 
@@ -28,7 +71,7 @@ CREATE TABLE Schedule (
         ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 ```
-
+### Populating The Tables
 ```sql
 INSERT INTO `Travel` (`TravelID`, `TravelName`, `StartLocation`, `EndLocation`) VALUES
 ('1', 'Emerald Isle Coastal Odyssey', 'Derry', 'Cork'),
