@@ -1,26 +1,35 @@
 # soa_ca2_transportation
-```
-CREATE TABLE `Travel` (
-    `TravelID` INT NOT NULL,
-    `TravelName` VARCHAR(255) NOT NULL,
-    `StartLocation` VARCHAR(255) NOT NULL,
-    `EndLocation` VARCHAR(255) NOT NULL,
-    PRIMARY KEY (`TravelID`)
+```sql
+DROP DATABASE IF EXISTS transportation_soa_ca2;
+
+CREATE DATABASE transportation_soa_ca2;
+
+USE transportation_soa_ca2;
+
+DROP TABLE IF EXISTS Schedule;
+DROP TABLE IF EXISTS Travel;
+
+CREATE TABLE Travel (
+    TravelID INT NOT NULL,
+    TravelName VARCHAR(255) NOT NULL,
+    StartLocation VARCHAR(255) NOT NULL,
+    EndLocation VARCHAR(255) NOT NULL,
+    PRIMARY KEY (TravelID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE `Schedule` (
-    `ScheduleID` INT NOT NULL,
-    `TravelID` INT NOT NULL,
-    `DepartureTime` DATETIME NOT NULL,
-    `ArrivalTime` DATETIME NOT NULL,
-    PRIMARY KEY (`ScheduleID`),
-    FOREIGN KEY (`TravelID`) REFERENCES `Travel` (`TravelID`)
+CREATE TABLE Schedule (
+    ScheduleID INT NOT NULL,
+    TravelID INT NOT NULL,
+    DepartureTime DATETIME NOT NULL,
+    ArrivalTime DATETIME NOT NULL,
+    PRIMARY KEY (ScheduleID),
+    FOREIGN KEY (TravelID) REFERENCES Travel (TravelID)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 ```
 
-```
+```sql
 INSERT INTO `Travel` (`TravelID`, `TravelName`, `StartLocation`, `EndLocation`) VALUES
 ('1', 'Emerald Isle Coastal Odyssey', 'Derry', 'Cork'),
 ('2', 'Celtic Capitals Express', 'Dublin', 'Belfast'),
