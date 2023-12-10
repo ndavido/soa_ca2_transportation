@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using soa_ca2.Middleware;
 using soa_ca2.Models;
 using System.Text.Json.Serialization;
@@ -23,7 +24,33 @@ builder.Services.AddDbContext<TravelContext>(opt =>
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    // Define the security scheme for the API key
+    options.AddSecurityDefinition("TransportApiKey", new OpenApiSecurityScheme
+    {
+        Name = "TransportApiKey",
+        Type = SecuritySchemeType.ApiKey,
+        In = ParameterLocation.Header,
+        Description = "Please insert API key into field"
+    });
+
+    // Add a requirement to use the security scheme globally
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "TransportApiKey"
+                }
+            },
+            Array.Empty<string>()
+        }
+    });
+});
 
 var app = builder.Build();
 
